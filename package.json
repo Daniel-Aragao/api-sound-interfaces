@@ -1,0 +1,19 @@
+{
+  "name": "trabalho-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "rest": "node ./apis/rest/app.rest.js",
+    "debug": "node --inspect-brk ./apis/rest/app.rest.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.4.5"
+  }
+}
