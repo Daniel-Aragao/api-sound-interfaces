@@ -1,4 +1,4 @@
-const PlayList = require('../models/Playlist');
+const PlayList = require('../../models/Playlist');
 const trackService = require('./track.service');
 
 const playlistDB = new Array();

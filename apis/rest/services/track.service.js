@@ -1,4 +1,4 @@
-const Track = require('../models/Track');
+const Track = require('../../models/Track');
 
 const trackDB = new Array();
 
