@@ -10,6 +10,10 @@ module.exports = class Playlist {
     this._tracks.push(track);
   }
 
+  containsTrack(trackId){
+    return this._tracks.findIndex(track => track.id === trackId) > -1;
+  }
+
   removeTrack(trackId) {
     const index = this._tracks.findIndex(track => track.id === trackId);
     if (index >= 0) {
