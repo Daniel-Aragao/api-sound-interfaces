@@ -60,7 +60,7 @@ const update = (args) => {
   if (!!tracks && Array.isArray(tracks)) {
     let toRemove = [];
 
-    playList._tracks.forEach(track => {
+    playList.tracks.forEach(track => {
       if(tracks.findIndex((t) => parseInt(t.id) == track.id) < 0){
         toRemove.push(track.id)
       }
@@ -98,12 +98,12 @@ const getById = (args) => {
 };
 
 
-const getAll = (args, res) => {
+const getAll = (args) => {
   const { user_id } = args;
 
   return playlistDB.map(playList => {
-      if(playList.user_id === Number.parseInt(user_id)) { 
-        return playList 
+      if(playList.user_id === Number.parseInt(user_id)) {
+        return playList;
       }
     }).filter(plist => !!plist);
 };

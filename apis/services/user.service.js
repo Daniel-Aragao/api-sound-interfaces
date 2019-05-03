@@ -47,6 +47,9 @@ const getById = (args) => {
   const { id } = args;
   const user = userDB.find(user => user.id === Number.parseInt(id));
   if (!!user) {
+    user.playlists = playListService.getAll({ user_id: id });
+  }
+  if (!!user) {
     return user;
   }
   return null;
