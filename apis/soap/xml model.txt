@@ -1,0 +1,84 @@
+#########################################################
+Copyright
+Enter bellow your the name of your company or your familly + given name
+#########################################################
+
+(c) SoundInterfaces
+
+
+#########################################################
+Service
+Type or name of service ('provisioning', 'EDI', process trigger's name, b2b exchange's name, etc.)
+#########################################################
+
+SoundInterfaces SOAP
+
+
+#########################################################
+Provider
+Name of service provider (commercial service's name, 'laboratory', 'production', etc.)
+#########################################################
+
+productionary
+
+
+#########################################################
+Domain
+Hierarchical naming, dot separated fields (e.g. countrycode.group.company.project.plateform.servicename)
+#########################################################
+
+br.unifor.sd.sound_interfaces
+
+
+#########################################################
+Brief
+A one-line service description
+#########################################################
+
+let you post/retrieve online message by SOAP, REST and GRAPHQL
+
+
+#########################################################
+HTTP service endpoints
+URL of each service server - one per line.
+#########################################################
+
+http://127.0.0.1./test_soap/endpoint1.php
+http://127.0.0.1./test_soap/endpoint2.php
+
+
+
+#########################################################
+Types definitions
+<int|string|float> typename;
+#########################################################
+
+string musicName;
+string musicAuthor;
+string name;
+string firstName;
+string lastName;
+int id;
+int user_id;
+int tracks
+
+
+#########################################################
+Functions prototypes
+<type> functionname(void | [type [, type...]]);
+#########################################################
+
+id createUser(firstName, lastName);
+id updateUser(id, firstName, lastName);
+id getUserById(id);
+id getAllUsers();
+
+id createTrack(musicName, musicAuthor);
+id updateTrack(id, musicName, musicAuthor);
+id getTrackById(id);
+id getAllTracks();
+
+id createPlayList(name, user_id, tracks);
+id updatePlayList(id, name, user_id, tracks);
+id getPlayListById(id);
+id getAllPlayList();
