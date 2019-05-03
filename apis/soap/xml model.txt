@@ -1,3 +1,7 @@
+http://marin.jb.free.fr/wsdl/
+
+
+
 #########################################################
 Copyright
 Enter bellow your the name of your company or your familly + given name
