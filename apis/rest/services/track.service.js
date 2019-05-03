@@ -1,85 +1,57 @@
-const Track = require('../../models/Track');
+const trackService = require('../../services/track.service');
 
-const trackDB = new Array();
-
-trackDB.push(new Track(1, 'Pagodão do pedrão', 'Pedrão'));
-trackDB.push(new Track(2, 'Meu coração ta bêbado', 'Gavião do sertanejeiro'));
-
-let lastId = 2;
-const idGenerator = function* () {
-  while (true) {
-    yield ++lastId;
-  }
-}
-
-const idIterator = idGenerator();
 
 const create = (req, res) => {
-  const { musicName, musicAuthor } = req.body;
-  const newTrack = new Track(idIterator.next().value, musicName, musicAuthor);
-
-  trackDB.push(newTrack);
-
   res.status(201).json({
     message: 'Música criado',
-    data: newTrack,
+    data: trackService.create(req.body),
   });
-
 };
 
 const update = (req, res) => {
-  const { id } = req.params;
-  const index = trackDB.findIndex(track => track.id === Number.parseInt(id));
+  const updatedTrack = trackService.update({
+    ...req.params,
+    ...(req.body || {})
+  });
 
-  if (index < 0) {
+  if(!!updatedTrack){
+    res.json({
+      message: 'Música atualizada',
+      data: updatedTrack,
+    })
+  }else{
     return res.status(404).json({
       message: 'Música não encontrada',
       data: null,
     });
-  }
-
-  const body = req.body || {};
-  const track = trackDB[index];
-  ['musicName', 'musicAuthor'].forEach((key) => {
-    if (!!body[key]) {
-      track[key] = body[key];
-    }
-  });
-
-  const updatedTrack = { ...track };
-  trackDB[index] = updatedTrack
-
-  res.json({
-    message: 'Música atualizada',
-    data: updatedTrack,
-  })
+  }  
 };
 
 const getById = (req, res) => {
-  const { id } = req.params;
-  const track = trackDB.find(track => track.id === Number.parseInt(id));
+  const track = trackService.getById(req.params);
+  
   if (!!track) {
     return res.json({
       data: track,
     });
+  }else{
+    res.status(404).json({
+      message: 'Usuário não encontrado',
+      data: null,
+    });
   }
-  res.status(404).json({
-    message: 'Usuário não encontrado',
-    data: null,
-  });
 };
 
 
-const getAll = (req, res) => {  
+const getAll = (req, res) => {
   res.json({
-    data: trackDB
+    data: trackService.getAll()
   });
 };
 
 module.exports = {
-  create,
-  update,
-  getById,
-  getAll,
-  trackDB: trackDB,
+  create: create,
+  update: update,
+  getById: getById,
+  getAll: getAll
 }
