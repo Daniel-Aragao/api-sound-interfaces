@@ -33,7 +33,7 @@ const update = (args) => {
 
   const body = args || {};
   const track = trackDB[index];
-  ['musicName', 'musicAuthor'].forEach((key) => {
+  ['name', 'author'].forEach((key) => {
     if (!!body[key]) {
       track[key] = body[key];
     }

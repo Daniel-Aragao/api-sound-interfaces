@@ -6,7 +6,10 @@
   "scripts": {
     "rest": "node ./apis/rest/app.rest.js",
     "graphql": "node ./apis/graphql/app.graphql.js",
-    "debug": "node --inspect-brk ./apis/rest/app.rest.js"
+    "soap": "node ./apis/soap/app.soap.js",
+    "debug-rest": "node --inspect-brk ./apis/rest/app.rest.js",
+    "debug-soap": "node --inspect-brk ./apis/soap/app.soap.js",
+    "debug-graphql": "node --inspect-brk ./apis/graphql/app.graphql.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +19,7 @@
     "express": "^4.16.4",
     "express-graphql": "^0.8.0",
     "graphql": "^14.2.1",
+    "soap": "^0.27.1",
     "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "^3.4.5"
   }

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="4bb27d38-f41e-4acd-ae99-299ba33f39d3" activeEnvironment="Default" name="xml" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="a0e39767-f9e2-49a7-b79e-3e2af4682e75" wsaVersion="NONE" name="SoundInterfaces SOAP_webservices" type="wsdl" bindingName="{br.unifor.sd.sound_interfaces.wsdl}SoundInterfaces SOAP_webservices" soapVersion="1_1" anonymous="optional" definition="file:/home/daniel/Documentos/Git/api-sound-interfaces/apis/soap/xml.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/daniel/Documentos/Git/api-sound-interfaces/apis/soap/xml.wsdl"><con:part><con:url>file:/home/daniel/Documentos/Git/api-sound-interfaces/apis/soap/xml.wsdl</con:url><con:content><![CDATA[<!--(c) SoundInterfaces
+2019-05-03
+let you post/retrieve online message by SOAP, REST and GRAPHQL
+
+Online WSDL 1.1 SOAP generator 0.2
+Julien Blitte-->
+<definitions name="let you post/retrieve online message by SOAP, REST and GRAPHQL" targetNamespace="br.unifor.sd.sound_interfaces.wsdl" xmlns:tns="br.unifor.sd.sound_interfaces.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="br.unifor.sd.sound_interfaces.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <!--definition of datatypes-->
+  <types>
+    <schema targetNamespace="br.unifor.sd.sound_interfaces.xsd" xmlns="http://www.w3.org/2000/10/XMLSchema">
+      <element name="Track">
+        <complexType>
+          <sequence>
+            <element name="id" type="int"/>
+            <element name="name" type="string"/>
+            <element name="author" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ArrayOfTrack">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" name="track" type="xsd:Track"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="User">
+        <complexType>
+          <sequence>
+            <element name="id" type="int"/>
+            <element name="firstName" type="string"/>
+            <element name="lastName" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ArrayOfUser">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" name="user" type="xsd:User"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Playlist">
+        <complexType>
+          <sequence>
+            <element name="id" type="int"/>
+            <element name="name" type="string"/>
+            <element name="user_id" type="string"/>
+            <element name="tracks" type="ArrayOfTrack"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ArrayOfPlaylist">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" name="playlist" type="xsd:Playlist"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="musicName">
+        <complexType>
+          <all>
+            <element name="value" type="string"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="musicAuthor">
+        <complexType>
+          <all>
+            <element name="value" type="string"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="name">
+        <complexType>
+          <all>
+            <element name="value" type="string"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="firstName">
+        <complexType>
+          <all>
+            <element name="value" type="string"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="lastName">
+        <complexType>
+          <all>
+            <element name="value" type="string"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="id">
+        <complexType>
+          <all>
+            <element name="value" type="int"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="user_id">
+        <complexType>
+          <all>
+            <element name="value" type="int"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="tracks">
+        <complexType>
+          <all>
+            <element name="value" type="int"/>
+          </all>
+        </complexType>
+      </element>
+      <element name="void">
+        <complexType>
+          <sequence/>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <!--response messages-->
+  <message name="returns_id">
+    <part name="id" type="xsd:id"/>
+  </message>
+  <message name="returns_track">
+    <part name="track" type="xsd:Track"/>
+  </message>
+  <message name="returns_tracks">
+    <part name="track" type="xsd:ArrayOfTrack"/>
+  </message>
+  <message name="returns_user">
+    <part name="user" type="xsd:User"/>
+  </message>
+  <message name="returns_users">
+    <part name="user" type="xsd:ArrayOfUser"/>
+  </message>
+  <message name="returns_playlist">
+    <part name="user" type="xsd:Playlist"/>
+  </message>
+  <message name="returns_playlists">
+    <part name="user" type="xsd:ArrayOfPlaylist"/>
+  </message>
+  <!--request messages-->
+  <message name="createUser">
+    <part name="firstName" type="xsd:firstName"/>
+    <part name="lastName" type="xsd:lastName"/>
+  </message>
+  <message name="updateUser">
+    <part name="id" type="xsd:id"/>
+    <part name="firstName" type="xsd:firstName"/>
+    <part name="lastName" type="xsd:lastName"/>
+  </message>
+  <message name="getUserById">
+    <part name="id" type="xsd:id"/>
+  </message>
+  <message name="getAllUsers">
+    <part name="void" type="xsd:void"/>
+  </message>
+  <message name="createTrack">
+    <part name="musicName" type="xsd:musicName"/>
+    <part name="musicAuthor" type="xsd:musicAuthor"/>
+  </message>
+  <message name="updateTrack">
+    <part name="id" type="xsd:id"/>
+    <part name="musicName" type="xsd:musicName"/>
+    <part name="musicAuthor" type="xsd:musicAuthor"/>
+  </message>
+  <message name="getTrackById">
+    <part name="id" type="xsd:id"/>
+  </message>
+  <message name="getAllTracks">
+    <part name="void" type="xsd:void"/>
+  </message>
+  <message name="createPlayList">
+    <part name="name" type="xsd:name"/>
+    <part name="user_id" type="xsd:user_id"/>
+    <part name="tracks" type="xsd:tracks"/>
+  </message>
+  <message name="updatePlayList">
+    <part name="id" type="xsd:id"/>
+    <part name="name" type="xsd:name"/>
+    <part name="user_id" type="xsd:user_id"/>
+    <part name="tracks" type="xsd:tracks"/>
+  </message>
+  <message name="getPlayListById">
+    <part name="id" type="xsd:id"/>
+  </message>
+  <message name="getAllPlayList">
+    <part name="void" type="xsd:void"/>
+  </message>
+  <!--server's services-->
+  <portType name="SoundInterfaces SOAP">
+    <operation name="createUser">
+      <input message="tns:createUser"/>
+      <output message="tns:returns_user"/>
+    </operation>
+    <operation name="updateUser">
+      <input message="tns:updateUser"/>
+      <output message="tns:returns_user"/>
+    </operation>
+    <operation name="getUserById">
+      <input message="tns:getUserById"/>
+      <output message="tns:returns_user"/>
+    </operation>
+    <operation name="getAllUsers">
+      <input message="tns:getAllUsers"/>
+      <output message="tns:returns_users"/>
+    </operation>
+    <operation name="createTrack">
+      <input message="tns:createTrack"/>
+      <output message="tns:returns_track"/>
+    </operation>
+    <operation name="updateTrack">
+      <input message="tns:updateTrack"/>
+      <output message="tns:returns_track"/>
+    </operation>
+    <operation name="getTrackById">
+      <input message="tns:getTrackById"/>
+      <output message="tns:returns_track"/>
+    </operation>
+    <operation name="getAllTracks">
+      <input message="tns:getAllTracks"/>
+      <output message="tns:returns_tracks"/>
+    </operation>
+    <operation name="createPlayList">
+      <input message="tns:createPlayList"/>
+      <output message="tns:returns_playlist"/>
+    </operation>
+    <operation name="updatePlayList">
+      <input message="tns:updatePlayList"/>
+      <output message="tns:returns_playlist"/>
+    </operation>
+    <operation name="getPlayListById">
+      <input message="tns:getPlayListById"/>
+      <output message="tns:returns_playlist"/>
+    </operation>
+    <operation name="getAllPlayList">
+      <input message="tns:getAllPlayList"/>
+      <output message="tns:returns_playlists"/>
+    </operation>
+  </portType>
+  <!--server encoding-->
+  <binding name="SoundInterfaces SOAP_webservices" type="tns:SoundInterfaces SOAP">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="createUser">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#createUser"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="updateUser">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#updateUser"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getUserById">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#getUserById"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getAllUsers">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#getAllUsers"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="createTrack">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#createTrack"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="updateTrack">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#updateTrack"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getTrackById">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#getTrackById"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getAllTracks">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#getAllTracks"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="createPlayList">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#createPlayList"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="updatePlayList">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#updatePlayList"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getPlayListById">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#getPlayListById"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getAllPlayList">
+      <soap:operation soapAction="urn:xmethods-delayed-quotes#getAllPlayList"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <!--access to service provider-->
+  <service name="productionary">
+    <port name="productionary_0" binding="SoundInterfaces SOAP_webservices">
+      <soap:address location="http://127.0.0.1:3000/wsdl"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint></con:endpoints><con:operation id="aebe00a9-e833-4541-a5f0-2958e5a9990b" isOneWay="false" action="urn:xmethods-delayed-quotes#createPlayList" name="createPlayList" bindingOperationName="createPlayList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f884504b-a6d2-4a1a-a46b-728622a00604" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:createPlayList soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#createPlayList"/></con:call></con:operation><con:operation id="9b93b5ae-8b39-4727-8776-c35124ed47a0" isOneWay="false" action="urn:xmethods-delayed-quotes#createTrack" name="createTrack" bindingOperationName="createTrack" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="674af632-6f95-47bf-8758-aaaad6c76015" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:createTrack soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+       	<musicName>Menina garota</musicName>
+      	<musicAuthor>Garotão das menina</musicAuthor>
+      </urn:createTrack>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#createTrack"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="cdddcfaf-13a1-4047-a06d-614913294a78" isOneWay="false" action="urn:xmethods-delayed-quotes#createUser" name="createUser" bindingOperationName="createUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="564fc74e-3f46-4470-8d6c-6d34f99d2ac4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:createUser soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+        	<firstName>Fulano</firstName>
+      	<lastName>Siqueira</lastName>
+      </urn:createUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#createUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="3391dc23-b967-49a6-be85-4763e41b7502" isOneWay="false" action="urn:xmethods-delayed-quotes#getAllPlayList" name="getAllPlayList" bindingOperationName="getAllPlayList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="94249969-6096-4158-bd4f-853413eb0c74" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:getAllPlayList soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+      	<user_id>1</user_id>
+      </urn:getAllPlayList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#getAllPlayList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="53689528-91ea-49b6-b7b1-6ba0ac8f959c" isOneWay="false" action="urn:xmethods-delayed-quotes#getAllTracks" name="getAllTracks" bindingOperationName="getAllTracks" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="25d74de2-fe86-450b-9f57-5ce725ba6130" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:getAllTracks soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#getAllTracks"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="98bc53f1-f8ff-46fd-959d-abbd85158dca" isOneWay="false" action="urn:xmethods-delayed-quotes#getAllUsers" name="getAllUsers" bindingOperationName="getAllUsers" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5a2409b4-00b8-41ef-95a5-4434b7bc4e7b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:getAllUsers soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#getAllUsers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8ac7cb69-f9fb-4ffb-ab41-139a53c13d80" isOneWay="false" action="urn:xmethods-delayed-quotes#getPlayListById" name="getPlayListById" bindingOperationName="getPlayListById" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8fcc862a-c6a2-49a2-af25-f0502cea46fd" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:getPlayListById soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+      	<user_id>1</user_id>
+      	<id>1</id>
+      </urn:getPlayListById>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#getPlayListById"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="400de126-242e-4bea-b3ff-ed4ca5943a4c" isOneWay="false" action="urn:xmethods-delayed-quotes#getTrackById" name="getTrackById" bindingOperationName="getTrackById" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ea520362-fe53-4254-bb10-e1b69f888dc7" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:getTrackById soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#getTrackById"/></con:call></con:operation><con:operation id="43bdc55f-5154-4b75-bf4f-bee078020764" isOneWay="false" action="urn:xmethods-delayed-quotes#getUserById" name="getUserById" bindingOperationName="getUserById" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e283844a-8646-448e-9c4b-fec58c5fe2db" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:getUserById soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+      	<id>1</id>
+      </urn:getUserById>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#getUserById"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="175ef649-3e70-40a0-94dd-90627aba631a" isOneWay="false" action="urn:xmethods-delayed-quotes#updatePlayList" name="updatePlayList" bindingOperationName="updatePlayList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="37866ea9-ee6d-4925-9414-63c2315f8642" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:updatePlayList soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#updatePlayList"/></con:call></con:operation><con:operation id="f6d69232-935c-40d9-b450-4936d9f05b7e" isOneWay="false" action="urn:xmethods-delayed-quotes#updateTrack" name="updateTrack" bindingOperationName="updateTrack" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="23e1b927-557e-424c-8a05-23cac496d630" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:updateTrack soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+      	<id>5</id>
+        	<name>Garoto danado</name>
+      	<author>Moça das tapioca</author>
+ 	</urn:updateTrack>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#updateTrack"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="0aad3e8b-1da7-4ae6-897d-42c58d093546" isOneWay="false" action="urn:xmethods-delayed-quotes#updateUser" name="updateUser" bindingOperationName="updateUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5da034c2-ae3e-44b2-9f35-33f5227fc0d3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:3000/wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xmethods-delayed-quotes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:updateUser soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         	<id>3</id>
+         	<firstName>Sicrano</firstName>
+      	<lastName>Pereira</lastName>
+      </urn:updateUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:xmethods-delayed-quotes#updateUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

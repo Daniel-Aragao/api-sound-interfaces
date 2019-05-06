@@ -47,8 +47,7 @@ HTTP service endpoints
 URL of each service server - one per line.
 #########################################################
 
-http://127.0.0.1./test_soap/endpoint1.php
-http://127.0.0.1./test_soap/endpoint2.php
+http://127.0.0.1./wsdl
 
 
 
