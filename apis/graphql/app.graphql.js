@@ -2,12 +2,15 @@ const express = require('express');
 const expressGrapql = require('express-graphql');
 const { buildSchema } = require('graphql');
 
+const userService = require('../services/user.service');
+const playListService = require('../services/playlist.service');
 
 const schema = buildSchema(`
   type User {
     id: Int
     firstName: String
     lastName: String
+    playlists: [Playlist]
   }
 
   type Track {
@@ -26,10 +29,26 @@ const schema = buildSchema(`
   type Query {
     playlists: String
   }
+
+  type Mutation {
+    saveUser(firstName: String!, lastName: String!): User
+    updateUser(id: Int!, firstName: String, lastName: String): User
+  }
+
+  type Query {
+    users: [User]
+    user(id: Int!): User
+    playlists(id: Int!): [Playlist]
+  }
 `)
 
 const root = {
   playlists: () => 'Hello world',
+  users: () => userService.getAll(),
+  user: (params) => userService.getById({ id: params.id }),
+  saveUser: (params) => userService.create(params),
+  updateUser: (params) => userService.update(params),
+  playlists: (params) => playListService.getAll({ user_id: params.id }),
 }
 
 const app = express();

@@ -1,10 +1,14 @@
 const UserDAO = require('../../daos/user.dao');
 
 const create = (req, res) => {
-  const newUser = UserDAO.create(req.body);
+const newUser = UserDAO.create(req.body);
+const userService = require("../../services/user.service");
+
+
+const create = (req, res) => {
   res.status(201).json({
     message: 'Usuário criado',
-    data: newUser,
+    data: userService.create(req.body),
   });
 };
 
@@ -13,6 +17,17 @@ const update = (req, res) => {
   const updatedUser = UserDAO.update(req.body, id);
 
   if (!updatedUser) {
+  let updatedUser = userService.update({
+    ...req.params,
+    ...(req.body || {})
+  });
+
+  if(!!updatedUser){
+    res.json({
+      message: 'Usuário atualizado',
+      data: updatedUser,
+    });
+  }else{
     return res.status(404).json({
       message: 'Usuário não encontrado',
       data: null,
@@ -28,6 +43,12 @@ const update = (req, res) => {
 const getById = (req, res) => {
   const { id } = req.params;
   const user = UserDAO.getById(id);
+  }  
+};
+
+const getById = (req, res) => {
+  const user = userService.getById(req.params);
+
   if (!!user) {
     return res.json({
       data: user,
@@ -45,6 +66,8 @@ const getAll = (req, res) => {
   res.json({
     data
   });
+  const data = userService.getAll();
+  res.json({ data });
 };
 
 module.exports = {
@@ -52,4 +75,5 @@ module.exports = {
   update,
   getById,
   getAll,
-}
+  getAll
+};

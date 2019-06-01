@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<!-- 
+(c) SoundInterfaces
+2019-05-03
+let you post/retrieve online message by SOAP, REST and GRAPHQL
+
+Online WSDL 1.1 SOAP generator 0.2
+Julien Blitte
+ -->
+<definitions name="let you post/retrieve online message by SOAP, REST and GRAPHQL" targetNamespace="br.unifor.sd.sound_interfaces.wsdl" 
+	xmlns:tns="br.unifor.sd.sound_interfaces.wsdl" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xsd1="br.unifor.sd.sound_interfaces.xsd" 
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/">
+	<!-- definition of datatypes -->
+	<types>
+		<schema targetNamespace="br.unifor.sd.sound_interfaces.xsd" 
+			xmlns="http://www.w3.org/2000/10/XMLSchema">
+			<element name="Track">
+				<complexType>
+					<sequence>
+						<element name="id" type="int"/>
+						<element name="name" type="string"/>
+						<element name="author" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="ArrayOfTrack">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="track" type="xsd:Track"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="User">
+				<complexType>
+					<sequence>
+						<element name="id" type="int"/>
+						<element name="firstName" type="string"/>
+						<element name="lastName" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="ArrayOfUser">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="user" type="xsd:User"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="Playlist">
+				<complexType>
+					<sequence>
+						<element name="id" type="int"/>
+						<element name="name" type="string"/>
+						<element name="user_id" type="string"/>
+						<element name="tracks" type="ArrayOfTrack"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="ArrayOfPlaylist">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="playlist" type="xsd:Playlist"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="musicName">
+				<complexType>
+					<all>
+						<element name="value" type="string" />
+					</all>
+				</complexType>
+			</element>
+			<element name="musicAuthor">
+				<complexType>
+					<all>
+						<element name="value" type="string" />
+					</all>
+				</complexType>
+			</element>
+			<element name="name">
+				<complexType>
+					<all>
+						<element name="value" type="string" />
+					</all>
+				</complexType>
+			</element>
+			<element name="firstName">
+				<complexType>
+					<all>
+						<element name="value" type="string" />
+					</all>
+				</complexType>
+			</element>
+			<element name="lastName">
+				<complexType>
+					<all>
+						<element name="value" type="string" />
+					</all>
+				</complexType>
+			</element>
+			<element name="id">
+				<complexType>
+					<all>
+						<element name="value" type="int" />
+					</all>
+				</complexType>
+			</element>
+			<element name="user_id">
+				<complexType>
+					<all>
+						<element name="value" type="int" />
+					</all>
+				</complexType>
+			</element>
+			<element name="tracks">
+				<complexType>
+					<all>
+						<element name="value" type="int" />
+					</all>
+				</complexType>
+			</element>
+			<element name="void">
+				<complexType>
+					<sequence></sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	<!-- response messages -->
+	<message name='returns_id'>
+		<part name='id' type='xsd:id'/>
+	</message>
+	<message name='returns_track'>
+		<part name='track' type='xsd:Track'/>
+	</message>
+	<message name='returns_tracks'>
+		<part name='track' type='xsd:ArrayOfTrack'/>
+	</message>
+	<message name='returns_user'>
+		<part name='user' type='xsd:User'/>
+	</message>
+	<message name='returns_users'>
+		<part name='user' type='xsd:ArrayOfUser'/>
+	</message>
+	<message name='returns_playlist'>
+		<part name='user' type='xsd:Playlist'/>
+	</message>
+	<message name='returns_playlists'>
+		<part name='user' type='xsd:ArrayOfPlaylist'/>
+	</message>
+	<!-- request messages -->
+	<message name='createUser'>
+		<part name='firstName' type='xsd:firstName'/>
+		<part name='lastName' type='xsd:lastName'/>
+	</message>
+	<message name='updateUser'>
+		<part name='id' type='xsd:id'/>
+		<part name='firstName' type='xsd:firstName'/>
+		<part name='lastName' type='xsd:lastName'/>
+	</message>
+	<message name='getUserById'>
+		<part name='id' type='xsd:id'/>
+	</message>
+	<message name='getAllUsers'>
+		<part name='void' type='xsd:void'/>
+	</message>
+	<message name='createTrack'>
+		<part name='musicName' type='xsd:musicName'/>
+		<part name='musicAuthor' type='xsd:musicAuthor'/>
+	</message>
+	<message name='updateTrack'>
+		<part name='id' type='xsd:id'/>
+		<part name='musicName' type='xsd:musicName'/>
+		<part name='musicAuthor' type='xsd:musicAuthor'/>
+	</message>
+	<message name='getTrackById'>
+		<part name='id' type='xsd:id'/>
+	</message>
+	<message name='getAllTracks'>
+		<part name='void' type='xsd:void'/>
+	</message>
+	<message name='createPlayList'>
+		<part name='name' type='xsd:name'/>
+		<part name='user_id' type='xsd:user_id'/>
+		<part name='tracks' type='xsd:tracks'/>
+	</message>
+	<message name='updatePlayList'>
+		<part name='id' type='xsd:id'/>
+		<part name='name' type='xsd:name'/>
+		<part name='user_id' type='xsd:user_id'/>
+		<part name='tracks' type='xsd:tracks'/>
+	</message>
+	<message name='getPlayListById'>
+		<part name='id' type='xsd:id'/>
+	</message>
+	<message name='getAllPlayList'>
+		<part name='void' type='xsd:void'/>
+	</message>
+	<!-- server's services -->
+	<portType name='SoundInterfaces SOAP'>
+		<operation name='createUser'>
+			<input message='tns:createUser'/>
+			<output message='tns:returns_user'/>
+		</operation>
+		<operation name='updateUser'>
+			<input message='tns:updateUser'/>
+			<output message='tns:returns_user'/>
+		</operation>
+		<operation name='getUserById'>
+			<input message='tns:getUserById'/>
+			<output message='tns:returns_user'/>
+		</operation>
+		<operation name='getAllUsers'>
+			<input message='tns:getAllUsers'/>
+			<output message='tns:returns_users'/>
+		</operation>
+		<operation name='createTrack'>
+			<input message='tns:createTrack'/>
+			<output message='tns:returns_track'/>
+		</operation>
+		<operation name='updateTrack'>
+			<input message='tns:updateTrack'/>
+			<output message='tns:returns_track'/>
+		</operation>
+		<operation name='getTrackById'>
+			<input message='tns:getTrackById'/>
+			<output message='tns:returns_track'/>
+		</operation>
+		<operation name='getAllTracks'>
+			<input message='tns:getAllTracks'/>
+			<output message='tns:returns_tracks'/>
+		</operation>
+		<operation name='createPlayList'>
+			<input message='tns:createPlayList'/>
+			<output message='tns:returns_playlist'/>
+		</operation>
+		<operation name='updatePlayList'>
+			<input message='tns:updatePlayList'/>
+			<output message='tns:returns_playlist'/>
+		</operation>
+		<operation name='getPlayListById'>
+			<input message='tns:getPlayListById'/>
+			<output message='tns:returns_playlist'/>
+		</operation>
+		<operation name='getAllPlayList'>
+			<input message='tns:getAllPlayList'/>
+			<output message='tns:returns_playlists'/>
+		</operation>
+	</portType>
+	<!-- server encoding -->
+	<binding name='SoundInterfaces SOAP_webservices' type='tns:SoundInterfaces SOAP'>
+		<soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/>
+		<operation name='createUser'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#createUser'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='updateUser'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#updateUser'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='getUserById'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#getUserById'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='getAllUsers'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#getAllUsers'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='createTrack'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#createTrack'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='updateTrack'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#updateTrack'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='getTrackById'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#getTrackById'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='getAllTracks'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#getAllTracks'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='createPlayList'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#createPlayList'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='updatePlayList'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#updatePlayList'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='getPlayListById'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#getPlayListById'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+		<operation name='getAllPlayList'>
+			<soap:operation soapAction='urn:xmethods-delayed-quotes#getAllPlayList'/>
+			<input>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</input>
+			<output>
+				<soap:body use='encoded' namespace='urn:xmethods-delayed-quotes' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+			</output>
+		</operation>
+	</binding>
+	<!-- access to service provider -->
+	<service name='productionary'>
+		<port name='productionary_0' binding='SoundInterfaces SOAP_webservices'>
+			<soap:address location='http://127.0.0.1:3000/wsdl'/>
+		</port>
+	</service>
+</definitions>
