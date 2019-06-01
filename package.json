@@ -6,14 +6,7 @@
   "scripts": {
     "rest": "node ./apis/rest/app.rest.js",
     "graphql": "node ./apis/graphql/app.graphql.js",
-<<<<<<< HEAD
-    "debug": "node --inspect-brk ./apis/rest/app.rest.js"
-=======
-    "soap": "node ./apis/soap/app.soap.js",
-    "debug-rest": "node --inspect-brk ./apis/rest/app.rest.js",
-    "debug-soap": "node --inspect-brk ./apis/soap/app.soap.js",
-    "debug-graphql": "node --inspect-brk ./apis/graphql/app.graphql.js"
->>>>>>> c3e544ad6341585c425ec13162b60c059e08be2d
+    "soap": "node ./apis/soap/app.soap.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,12 +15,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
     "express-graphql": "^0.8.0",
-    "graphql": "^14.2.1",
-<<<<<<< HEAD
-=======
     "soap": "^0.27.1",
->>>>>>> c3e544ad6341585c425ec13162b60c059e08be2d
-    "ts-node-dev": "^1.0.0-pre.32",
+    "graphql": "^14.2.1",
     "typescript": "^3.4.5"
   }
-}
