@@ -57,7 +57,8 @@ var app = express();
 //body parser middleware are supported (optional)
 app.use(bodyParser.raw({ type: function () { return true; }, limit: '5mb' }));
 
-app.listen(3000, function () {
+app.listen(5000, function () {
+    console.log('Servidor soap rodando na porta 5000');
     //Note: /wsdl route will be handled by soap module
     //and all other routes & middleware will continue to work
     let server = soap.listen(app, {

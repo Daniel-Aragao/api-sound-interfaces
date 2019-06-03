@@ -26,10 +26,6 @@ const schema = buildSchema(`
     tracks: [Track]
   }
 
-  type Query {
-    playlists: String
-  }
-
   type Mutation {
     saveUser(firstName: String!, lastName: String!): User
     updateUser(id: Int!, firstName: String, lastName: String): User
@@ -59,6 +55,6 @@ app.use('/graphql', expressGrapql({
   graphiql: true,
 }));
 
-app.listen(3000, function () {
-  console.log('Servidor - API Rest rodando na porta 3000');
+app.listen(4000, function () {
+  console.log('Servidor - graphql rodando na porta 4000');
 });

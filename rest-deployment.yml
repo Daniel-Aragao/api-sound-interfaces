@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: api-rest
+spec:
+  selector:
+    matchLabels:
+      app: api-rest
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-rest
+    spec:
+      containers:
+      - name: api-rest
+        image: api-sound-image
+        env:
+        - name: NODE_API
+          value: 'rest'
+        ports:
+        - containerPort: 3000

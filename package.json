@@ -2,11 +2,9 @@
   "name": "trabalho-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "rest": "node ./apis/rest/app.rest.js",
-    "graphql": "node ./apis/graphql/app.graphql.js",
-    "soap": "node ./apis/soap/app.soap.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

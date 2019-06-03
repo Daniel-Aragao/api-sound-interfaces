@@ -1,9 +1,5 @@
 const UserDAO = require('../../daos/user.dao');
-
-const create = (req, res) => {
-const newUser = UserDAO.create(req.body);
 const userService = require("../../services/user.service");
-
 
 const create = (req, res) => {
   res.status(201).json({
@@ -16,18 +12,12 @@ const update = (req, res) => {
   const { id } = req.params;
   const updatedUser = UserDAO.update(req.body, id);
 
-  if (!updatedUser) {
-  let updatedUser = userService.update({
-    ...req.params,
-    ...(req.body || {})
-  });
-
   if(!!updatedUser){
     res.json({
       message: 'Usuário atualizado',
       data: updatedUser,
     });
-  }else{
+  } else {
     return res.status(404).json({
       message: 'Usuário não encontrado',
       data: null,
@@ -37,13 +27,7 @@ const update = (req, res) => {
   res.json({
     message: 'Usuário atualizado',
     data: updatedUser,
-  })
-};
-
-const getById = (req, res) => {
-  const { id } = req.params;
-  const user = UserDAO.getById(id);
-  }  
+  });
 };
 
 const getById = (req, res) => {
@@ -66,8 +50,6 @@ const getAll = (req, res) => {
   res.json({
     data
   });
-  const data = userService.getAll();
-  res.json({ data });
 };
 
 module.exports = {

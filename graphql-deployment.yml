@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: api-graphql
+spec:
+  selector:
+    matchLabels:
+      app: api-graphql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-graphql
+    spec:
+      containers:
+      - name: api-graphql
+        image: api-sound-image
+        env:
+        - name: NODE_API
+          value: 'graphql'
+        ports:
+        - containerPort: 4000
