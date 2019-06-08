@@ -32,7 +32,7 @@ const schema = buildSchema(`
   }
 
   type Query {
-    users: [User]
+    users(amount: Int!): [User]
     user(id: Int!): User
     playlists(id: Int!): [Playlist]
   }
@@ -40,7 +40,7 @@ const schema = buildSchema(`
 
 const root = {
   playlists: () => 'Hello world',
-  users: () => userService.getAll(),
+  users: (params) => userService.getAll(params.amount),
   user: (params) => userService.getById({ id: params.id }),
   saveUser: (params) => userService.create(params),
   updateUser: (params) => userService.update(params),

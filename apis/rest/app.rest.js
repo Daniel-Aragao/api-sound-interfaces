@@ -17,7 +17,11 @@ app.post(`/${USERS_PATH}`, userService.create);
 
 app.put(`/${USERS_PATH}/:id`, userService.update);
 
-app.get(`/${USERS_PATH}`, userService.getAll);
+app.get(`/${USERS_PATH}`, (req, res) => {
+  const { q } = req.query;
+  const data = userService.getAll(Number.parseInt(q, 10));
+  res.json(data);
+});
 
 app.get(`/${USERS_PATH}/:id`, userService.getById);
 

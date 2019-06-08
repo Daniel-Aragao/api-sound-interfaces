@@ -57,9 +57,8 @@ const getById = (args) => {
 };
 
 
-const getAll = (req, res) => {
-  const { q } = req.query;
-  const data = userDB.slice(0, Number.parseInt(q, 10)).map(user => {
+const getAll = (amount) => {
+  const data = userDB.slice(0, amount).map(user => {
     const playlists = playListService.playlistDB.map(p => {
       if (p.user_id === user.id) return p;
     }).filter(plist => !!plist);
@@ -69,7 +68,7 @@ const getAll = (req, res) => {
     };
   });
 
-  res.json(data);
+  return data;
 };
 
 module.exports = {
