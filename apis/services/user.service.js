@@ -3,8 +3,9 @@ const playListService = require('./playlist.service');
 
 const userDB = new Array();
 
-userDB.push(new User(1, 'João', 'das Neves'));
-userDB.push(new User(2, 'Neto', 'das Neves'));
+for (let i = 1; i <= 2000; i++) {
+  userDB.push(new User(i, `Neto ${i}`, `das Neves ${i}`));
+}
 
 let lastId = 2;
 const idGenerator = function* () {
@@ -56,8 +57,9 @@ const getById = (args) => {
 };
 
 
-const getAll = () => {
-  const data = userDB.map(user => {
+const getAll = (req, res) => {
+  const { q } = req.query;
+  const data = userDB.slice(0, Number.parseInt(q, 10)).map(user => {
     const playlists = playListService.playlistDB.map(p => {
       if (p.user_id === user.id) return p;
     }).filter(plist => !!plist);
@@ -67,7 +69,7 @@ const getAll = () => {
     };
   });
 
-  return data;
+  res.json(data);
 };
 
 module.exports = {

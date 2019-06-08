@@ -4,18 +4,12 @@ const trackService = require('./track.service');
 const playlistDB = new Array();
 
 (function(){
-  let p1 = new PlayList(1, 'Só Sucessos', 1);
-  let p2 = new PlayList(2, 'Batidão Sertanejo', 1)
-  let p3 = new PlayList(3, 'Favoritas', 2)
-
-  p1.addTrack(trackService.trackDB[0]);
-  p2.addTrack(trackService.trackDB[1]);
-  p3.addTrack(trackService.trackDB[0]);
-  p3.addTrack(trackService.trackDB[1]);
-
-  playlistDB.push(p1);
-  playlistDB.push(p2);
-  playlistDB.push(p3);
+  for (let i = 1; i <= 2000; i++) {
+    const p = new PlayList(i, `Só Sucessos ${i}`, i);
+    p.addTrack(trackService.trackDB[0]);
+    p.addTrack(trackService.trackDB[1]);
+    playlistDB.push(p);
+  }
 })();
 
 let lastId = 2;

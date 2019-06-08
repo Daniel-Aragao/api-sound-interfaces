@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const playListService = require('../rest/services/playlist.service');
+const playListService = require('../services/playlist.service');
 
 const userDB = new Array();
 

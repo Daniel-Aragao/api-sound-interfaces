@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const  userService = require('./services/user.service');
-const  playListService = require('./services/playlist.service');
-const  trackService = require('./services/track.service');
+const  userService = require('../services/user.service');
+const  playListService = require('../services/playlist.service');
+const  trackService = require('../services/track.service');
 
 // Create a new express application instance
 const app = express();
