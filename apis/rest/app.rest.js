@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // user routes
-const USERS_PATH = 'users';
+const USERS_PATH = 'rest/users';
 app.post(`/${USERS_PATH}`, userService.create);
 
 app.put(`/${USERS_PATH}/:id`, userService.update);
