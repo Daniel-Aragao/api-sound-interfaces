@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-soap
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-soap
-        image: api-sound-image
+        image: sommerfield/api-sound-image
         env:
         - name: NODE_API
           value: 'soap'

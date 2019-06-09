@@ -6,12 +6,15 @@ spec:
   rules:
   - http:
       paths:
-      - backend:
+      - path: /rest
+        backend:
           serviceName: api-rest-service
           servicePort: 3000
-      - backend:
+      - path: /graphql
+        backend:
           serviceName: api-graphql-service
           servicePort: 4000
-      - backend:
+      - path: /soap
+        backend:
           serviceName: api-soap-service
           servicePort: 5000
