@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-graphql
-        image: sommerfield/api-sound-image
+        image: sommerfield/api-sound-image:2.0.0
         env:
         - name: NODE_API
           value: 'graphql'
