@@ -20,7 +20,8 @@ var myService = {
                 return userService.getById(args);
             },
             getAllUsers: function (args) {
-                return userService.getAll();
+                const { user_amount } = args;
+                return userService.getAll(user_amount);
             },
             createTrack: function (args) {
                 return trackService.create(args)
