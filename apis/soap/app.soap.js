@@ -63,7 +63,7 @@ app.listen(5000, function () {
     //Note: /wsdl route will be handled by soap module
     //and all other routes & middleware will continue to work
     let server = soap.listen(app, {
-        path: '/wsdl',
+        path: '/soap',
         services: myService,
         xml: xml,
         callback: function (err, res) {
